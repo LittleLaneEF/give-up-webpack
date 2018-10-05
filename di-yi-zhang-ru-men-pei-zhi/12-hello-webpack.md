@@ -1,106 +1,137 @@
-在节目开始之前，我们希望你了解一下节目的背景。对于里面的一下知识如果有不了解的，希望下去后自行理解，否则你更本不知道节目将的是什么。
+从这一节开始我们就这个是开始接触 `Webpack` 了，想想接下来的东西，都有些激动呢！
 
-#### node 环境依赖
+上一小节我们介绍了 `Webpack` 依赖环境和 `Webpack` 本尊的安装，还没有尝试的同学可以先试试，再来看这一节的内容哟！
 
-`node` 环境依然成为前端开发必须依赖的环境了，如果你电脑上还没有安装 `node` 环境那就赶紧加快脚步吧！安装步骤和普通的软件安装差不多，不知道的可以去[百度](https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=node%20&rsv_spt=1&oq=webpack&rsv_pq=94234cc300038cbe&rsv_t=cfc0c7eVE6pzn7akl7xgYp1Wh5J5x1E69zmm2nA7k7PuuXJ8%2FSnnOzC76Fzf70dw99v9&rqlang=cn&rsv_enter=1&inputT=2791&rsv_sug3=14&rsv_sug1=12&rsv_sug7=100&rsv_sug2=0&rsv_sug4=2791&rsv_sug=1)，我在这里就不赘述了。
+### 搭建项目
 
-如果有同学想要在一台主机上管理多版本的 `node` ，强烈推荐 [nvm](https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=nvm&rsv_spt=1&oq=mvn&rsv_pq=81173879000114b9&rsv_t=1ac3WezslGTE4zQOs9nj4sOS2%2F%2BP9wvaj4wxv2rN95zWtxtTM0f24LWYoTDJtOnto%2FCd&rqlang=cn&rsv_enter=1&inputT=783&rsv_sug3=19&rsv_sug1=16&rsv_sug7=100&bs=mvn)，随意安装、切换 `node` 版本，不要太方便！
+`Webpack` 作为有个项目的打包工具，当然离开了项目，`Webpack` 的价值就大打折扣了。所以我们这里先新建一个项目。
 
-大家安装好 `node` 后，在终端或控制台执行 `node -v` 已检查 `node` 环境是否安装成功！
+![](/assets/hello-webpack.png)
 
-#### npm 包管理工具
+这里我在我的磁盘上建了一个 `give-up-webpack-cases` 的工程，用来跟我的 `github` 同步，然后在工程下新建了 `Hello-Webpack` 的项目。文件比较多，大家主要关注 `src` 目录、`index.html`、`package.json`。
 
-`npm` 是什么？npm 是 `JavaScript` 包管理工具，来自全世界的开发者在这里互相分享与借鉴。在 `npm` 大世界里面<span data-type="color" style="color:rgb(51, 51, 51)"><span data-type="background" style="background-color:rgb(255, 255, 255)">每星期大约有 30 亿次的下载量，包含超过 600000 个包，可想而知其应用范围有多广！</span></span>
+#### index.html执行
 
-大家不用担心 `npm` 怎么安装，他是集成在 `node` 里面的，随着 `node` 的安装而安装！
-
-如果大家安装了 `node` ，不妨在终端或控制台执行 `npm -v` 试试，看打印出的版本号是多少！
-
-这里推荐一个 `npm registry` 管理工具 - [nrm](https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=nrm&rsv_spt=1&oq=markdown%2520%25E5%25B1%2585%25E5%258F%25B3&rsv_pq=b2526721000408e0&rsv_t=dbccy5%2BbdSNM0mrVUWfuLddUwjjRxklHI0%2BwiTGFwtSaUl9dL1i3axtDozTvsLQGpO2J&rqlang=cn&rsv_enter=1&inputT=1323&sug=markdown&rsv_sug3=131&rsv_sug1=99&rsv_sug7=100&rsv_sug2=0&rsv_sug4=1323)。`nrm` 和 `nvm` 有点功能类似，可以很方便的查看、添加、修改、切换 `npm registry`。
-
-到这里两个必须的工具就安装好了！
-
-#### yarn 包管理工具
-
-由于 `npm` 的服务器是搭建在国外的。对于国内的开发者来说，网络慢、下载速度慢是非常痛苦的事情，为此淘宝搭建了供国内开发者使用的 `cnpm` 淘宝镜像。`cnpm` 下载包文件挺快的，但是感觉下载依赖包文件有些问题，所以我个人不喜欢使用。
-
-由于 `npm` 下载依赖包文件的种种诟病，国外人有构建了快速、可靠、安全的依赖管理工具 - `yarn`。`yarn` 的使用和 `npm` 差不多，我这里就不介绍了，有兴趣的可以去[搜索](https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=yarn&rsv_spt=1&oq=cnpm&rsv_pq=9c3b42880004efd0&rsv_t=5deed8kUI6bL42Ytde%2B3FywZKdK3q3qCcYCCRcR%2FdP63Zxpz8WdHJDGdttxH02r1SePv&rqlang=cn&rsv_enter=0&inputT=3654&sug=markdown&rsv_sug3=142&rsv_sug4=3654&rsv_jmp=slow)。
-
-我特别喜欢使用 `yarn`，因为它快！
-
-#### webpack 
-
-`webpack` 在 `npm` 上也发布了安装包，所以我们完全可以通过 `npm` 或者 `yarn` 进行下载。
-
-- `Global` 全局安装
-
-```
-npm install webpack -g
-yarn add webpack -g
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Hello Webpack</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="./dist/main.js"></script>
+</body>
+</html>
 ```
 
-- `Local` 局部安装
+在 `index.html` 里面，我们建了一个 `id` 为 `app` 的容器，然后用 `script` 标签引入了即将打包生成在 `dist` 目录下面的目标 `JavaScript` 文件 `main.js`。
 
-在项目的根目录下局部安装 `webpack` ，前提是项目的根目录下必须有 `package.json` 配置文件也就是由 `npm init` 生成的文件。
+#### src/index.js
 
+```javascript
+document.querySelector('#app').innerHTML = 'Hello Webpack!';
 ```
-npm install webpack --save
-yarn add webpack --save
-```
 
-虽然介绍了以上两种安装方式，但是我们推荐安装到本项目，原因是可防止不同项目依赖不同版本的 `Webpack` 而导致冲突。
+在 `src/index.js` 文件中，我们用 `document.querySelector` 选取了 `id` 为 `app` 的容器，然后向里面设置了 `Hello Webpack`。
 
-##### 附录资料
-
-- `package.json`
-
-`package.json` 是 `npm init` 命令生成的配置文件。
-
-![](/static/package.gif)
+#### package.json
 
 ```json
 {
-"name": "test", // 项目的名称
-"version": "1.0.0", // 项目版本号
-"description": "", // 项目的描述信息
-"main": "index.js", // 项目的主文件入口
-"scripts": { // 运行项目的 `shell` 命令，我们之后的演示项目会用到
-
+"name": "hello-webpack",
+"version": "0.0.1",
+"description": "hello-webpack",
+"main": "index.js",
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1"
 },
-"keywords": [], // 项目的关键词
-"author": "", // 项目的开发作者
-"license": "ISC", // 项目的 `license` 协议，这里我们不做过多的介绍
-"devDependencies": { // 项目开发过程中开发环境所需要的依赖包文件
-
+"repository": {
+"type": "git",
+"url": "git+https://github.com/LittleLaneEF/give-up-webpack-cases.git"
 },
-"dependencies": { // 项目投产环境所需要的依赖包文件也就是被打包的包文件
-
+"keywords": [
+"webpack"
+],
+"author": "littleLane",
+"license": "MIT",
+"bugs": {
+"url": "https://github.com/LittleLaneEF/give-up-webpack-cases/issues"
+},
+"homepage": "https://github.com/LittleLaneEF/give-up-webpack-cases#readme",
+"devDependencies": {
+"webpack": "^4.20.2"
 }
+}
+
+```
+
+从 `package.json` 中可以看到，我们已经通过 `npm install webpack --save-dev` 安装了 `Webpack` 。其他的配置信息我们之前都有介绍，这里就不赘述了！
+
+有人可能会问，那个叫 `package-lock.json` 文件又是什么呢？这个文件是在我们安装依赖包文件时生成的版本锁定文件。当我们将项目代码上传到 `gitlab` 或者 `github` 或其他代码管理平台供别人下载使用时，别人拿到源代码后的第一个操作就是通过 `npm install` 安装项目的依赖包文件。`npm` 首先会去 `package-lock.json` 查找项目所有依赖包的关联关系和版本信息，然后根据这个信息去安装包文件。如果没有这个文件，`npm` 安装包文件会慢一些，因为他要边下载包文件，边解析包文件的依赖关系。用 `yarn` 安装包文件也会生成 `yarn-loack.json` 文件，他们的作用是一样的！
+
+### build 源代码
+
+在 `Hello-Webpack` 项目根目录运行 `webpack` 命令，然后可以看到类似下面的图示：
+
+![](/assets/hello-webpack-build.png)
+
+从图中不难看出，我们在终端或者控制台执行 `webpack` 后，命令行一次输出了：
+
+- `Hash`：入口文件的 `hash` 值，这个 `hash` 值是根据文件的众多信息生成的，如果 `src/index.js` 内容不变，不管你运行多少次 `webpack` ，生成的 `hash` 值都是一样的。
+
+- `Version`：此次编译使用 `Webpack` 的版本信息。大家可能已经注意到了，我项目安装的 `Webpack` 的版本号是 `4.20.2`，而这里输出的是 `4.8.3`，怎么回事呢？那是因为当我们在终端或者控制台执行 `Webpack` 时，系统默认是找我们全局安装的 `Webpack` 的，我全局安装的就是 `Webpack 4.8.3` 版本的，不行你试试！（_这里顺便提一嘴，如果当你运行 `Webpack` 时，输出说找不到 `Webpack` 或者 `Webpack cli` 命令，只需要 `npm install webpack-cli -g` 或者 `yarn add webpack-cli -g` 就可以了_）。
+
+- `Time`：表示此次打包所需要的时间，这个时间基本上每次都不一样，由机器的配置、是否打包过、文件的打包、项目的复杂度等众多因素决定。
+
+- `Build at`：打包开始时间，这个比较简单。
+
+> 下面就是重点了：
+
+- 第一个红框里面输出了生成文件的相关信息。
+- `Asset`：生成的静态资源名称，这里是 `main.js`。
+- `Size Chunks`：`chunk` 包的大小 `602 bytes`。
+- `Chunks Name`：`chunk` 包的名称 `main`。 
+
+为什么默认执行 `Webpack` 会这样输出呢？
+还有他又是怎么知道我们要打包 `src/index.js` 的呢？
+太多疑问了，我们还是去官网找答案吧！
+
+在[概念入口](https://www.webpackjs.com/concepts/#%E5%85%A5%E5%8F%A3-entry-)一节，我们可以发现 `Webpack` 默认的入口 `entry` 的值是 `./src`，也就是 `./src/index.js`（这里不要问我为什么知道的，`Webpack` 是基于 `node` 的，肯定使用了 `node` 的[模块机制](http://www.infoq.com/cn/articles/nodejs-module-mechanism/)，这个就不在本次分享的范围内了，想要了解的可以自己去搜索。），`Webpack` 打包从这个文件开始，所以第二个问题解决了。
+
+在[概念出口](https://www.webpackjs.com/concepts/#%E5%87%BA%E5%8F%A3-output-)一节描述了 `Webpack` 默认的输出目录是 `./dist` 目录，如果项目中没有改目录就会新建一个。至于为什么输出的是 `main.js`，我觉得当我们什么配置都不写时，`Webpack` 默认给我们配置的入口是这样的：
+
+```json
+entry: './src'
+```
+
+`entry` 属性的单个入口语法，是下面的简写，详细请看[这里](https://www.webpackjs.com/concepts/entry-points/#%E5%8D%95%E4%B8%AA%E5%85%A5%E5%8F%A3-%E7%AE%80%E5%86%99-%E8%AF%AD%E6%B3%95)
+
+```json
+entry: {
+main: './src'
 }
 ```
 
-这个配置文件可是整个项目的配置和描述文件，无论是普通的项目还是你要发布 `npm` 包文件都是需要的。后续一些项目的配置，我们也会配置在这个文件里面。详细可以看上面给出的注释或者想要查看更详细的配置信息也可以去网上搜索。
+这个配置指定了，输出的 `chunk` 包名称是 `main`，入口文件时 `./src/index`。
 
-- `--save` && `--save-dev`
+关于 `entry` 和 `output` 详情我们后续在单独介绍。
 
-在介绍这两个命令参数之前，我们先回顾上面介绍 `package.json` 的内容：我们说 `package.json` 文件是我们通过在项目根目录运行 `npm init` 生成的，在配置文件里面有两个依赖的对象，一个是 `devDependencies`（项目开发过程中开发环境所需要的依赖包文件
-），另一个是 `dependencies`（项目投产环境所需要的依赖包文件也就是被打包的包文件
-）。其实在有些项目中除了上面两个配置对象外还会有一个 `optionalDependencies` 配置对象。
+到这里我们的疑问就都解决了，继续看控制台输出。
 
-那这三个对象我们是怎么区分的呢？
+- 第二个红框告诉我们此次打包的入口文件时 `./src/index.js` 文件。
 
-> `devDependencies`：我们给出的注释是项目开发过程中所依赖的包文件。参与过项目开发的同学一定会知道，我们在开发过程中会启动一个开发的服务。在这个服务里我们的代码也会通过一些工具转换和编译，做转换和编译的这些工具包文件我们是不需要打入到最终代码里面的，我们就成这些包文件为开发包文件。我们可以手动配置包文件信息到 `devDependencies` 对象下进行安装，也可以在 `npm install` 或 `yarn add` 后加 `--save-dev` 来指定包文件的安装信息配置在 `devDependencies` 对象下。我推荐命令安装的形式。
+- 那下面的一戳黄色的日志又是什么？它警告我们说：此次编译的环境`（mode）`还没有指定，`Webpack` 将默认为生产环境`（production）``build`。我们可以通过设置 mode 值为 `production` 或者 `development` 来指定打包的环境，设置不同值时会开启不同的打包模式，启用不同的代码打包优化的插件功能。这个参数的设置我们后续详细讨论。
 
-> `dependencies`：项目投产环境所需要的依赖包文件也就是被打包的包文件。我们开发时编写的代码有很多是浏览器无法直接识别的，在投产过程中我们会使用很多工具对源代码进行转换和编译。工具转换的源代码又使用了很多框架、类库，这些框架、类库安装的配置信息就应该在 `dependencies` 下，这样 `Webpack` 在 `build` 过程中查找包文件就会便捷很多。所以说这个对象配置的包文件就是投产环境所需要的依赖包文件。
+> ⚠️ 以上输出信息可能因为 Webpack 版本不同而不同，但是大致都差不多！
 
-> `optionalDependencies`：根据名称可以看出，这个对象下配置的包文件信息在项目中是可选的。在我们添加项目的测试用例时，有时为了做模拟浏览器事件的测试我们会安装 `puppeteer`，他只会在我们运行测试用例的时候用到，其他什么开发呀，源代码 `build` 呀都用不到，所以是可选的，我们就将安装信息配置在这个参数对象下。
+在 `Webpack` 编译过程中不出现 `Error` 就是 `OK` 的，警告什么都可以不用管的。如果你打包成功了，在浏览器里面打开 `index.html` 就会看到页面上显示 `Hello Webpack` 字样了！
 
+### 结语
 
-外链资料：
+这一小节，我们初次接触了 `Webpack` 的打包，了解了 `Webpack` 打包的日志输出，对 `entry` 和 `output` 做了很浅显的了解。其他还有一个概念，在这里就不做介绍了，我们后续都会开出单独的小节介绍，比如 `chunk`、`entry`、`output` 等等。
 
-* [node 官网](https://nodejs.org/zh-cn/)
-* [npm 官网](https://www.npmjs.com/)
-* [yarn 官网](https://yarn.bootcss.com/)
-* [webpack 英文版官网](https://webpack.js.org/)
-* [webpack 中文版官网](https://webpack.docschina.org/)
-* [license 协议](http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html)
+下一小节：接触loader
