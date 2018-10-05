@@ -105,3 +105,5 @@ yarn add webpack --save
 * [webpack 中文版官网](https://webpack.docschina.org/)
 * [license 协议](http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html)
 
+下一节：[Hello Webpack](/di-yi-zhang-ru-men-pei-zhi/1-2-hello-webpack.md)
+

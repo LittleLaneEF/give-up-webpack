@@ -4,4 +4,4 @@
 * [1.2 Hello Webpack](/di-yi-zhang-ru-men-pei-zhi/1-2-hello-webpack.md)：简单的配置一个项目，完成入口和出口的配置
 * [1.3 接触 loader](/di-yi-zhang-ru-men-pei-zhi/1-3-jie-chu-loader.md)：使用 loader 简单的处理项目中的 css 文件
 * [1.4 使用 plugins](/di-yi-zhang-ru-men-pei-zhi/1-4-shi-yong-plugins.md)：配置 Webpack 插件提出项目的 css 文件
-* 1.5 环境区分：区分开发环境和测试环境，对代码做不同的处理
+* [1.5 环境区分](/di-yi-zhang-ru-men-pei-zhi/1-5-huan-jing-qu-fen)：区分开发环境和测试环境，对代码做不同的处理

@@ -12,4 +12,4 @@
 
 强大的插件机制更是使其对前端开发语言和工具一点都不挑剔。对于 ES6、ES7 或者 ES next 有 babel-loader，对于 TypeScript 有 [awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader)，样式工具 SCSS 、Less、Stylus、PostCSS 也有对应的 sass-loader、less-loader、stylus-loader、postcss-loader 等等，这里我就不一一列举了，大家可以自己探索！
 
-
+下一章：[第一章 入门配置](/di-yi-zhang-ru-men-pei-zhi.md)

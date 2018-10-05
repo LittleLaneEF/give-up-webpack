@@ -22,3 +22,5 @@
 * [Webpack3.X版 成神之路](http://jspang.com/post/webpack3x.html)
 * [深入浅出 Webpack](http://webpack.wuhaolin.cn/)
 
+下一章：[前置介绍](/chapter1.md)
+
