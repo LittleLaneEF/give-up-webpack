@@ -86,9 +86,9 @@ npm install --save-dev extract-text-webpack-plugin@1.0.1
 
 这里大家一定要注意对应版本，否则打包会报错。
 
-插件是需要单独引入的，而 loader 不需要。可以说 loader 是解析到指定文件的时候就去加载对应的 loader 的，而插件是事先引入，然后配置，最后才用的。
+插件是需要单独引入的，而 `loader` 不需要。可以说 `loader` 是解析到指定文件的时候就去加载对应的 `loader` 的，而插件是事先引入，然后配置，最后才用的。
 
-修改 webpack.config.js 里面配置为：
+修改 `webpack.config.js` 里面配置为：
 
 ```javascript
 const path = require('path');
@@ -126,15 +126,31 @@ module.exports = {
 
 ### build
 
-在控制台运行 webpack 。
+在控制台运行 `webpack` 。
 
 ![](/assets/hello-plugin.png)
 
-我们看到控制台输出了两个文件：main.js 和 index.css，入口文件（Entrypoint）也变成了两个 main.js 和 index.css，对一个的 dist 目录也同样有了两个文件：index.css 和 main.js。
+我们看到控制台输出了两个文件：`main.js` 和 `index.css`，入口文件`（Entrypoint）`也变成了两个 `main.js` 和 `index.css`，对一个的 `dist` 目录也同样有了两个文件：`index.css` 和 `main.js`。
+
+再看看 `main.js` 里面的源代码：
+
+```javascript
+/* ./src/index.js */
+(function(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+    eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style/index.css */ \"./src/style/index.css\");\n/* harmony import */ var _style_index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\n\ndocument.querySelector('#app').innerHTML = 'Hello Plugin!'; \n\n//# sourceURL=webpack:///./src/index.js?");
+}),
+
+/* ./src/style/index.css */
+(function(module, exports) {
+    eval("// removed by extract-text-webpack-plugin\n\n//#       sourceURL=webpack:///./src/style/index.css?");
+})
+```
+样式文件也不在 `main.js` 里面了，达到了我们抽离样式文件的目的！
 
 ### 引入样式
 
-在 index.html 引入 dist/index.css，发现样式在页面上起作用了。
+在 `index.html` 引入 `dist/index.css`，发现样式在页面上起作用了。
 
 ```html
 <!DOCTYPE html>
@@ -155,6 +171,6 @@ module.exports = {
 
 ### 总结
 
-到这里为止，我们已经看到了 Webpack 的强大和高可配置性。按照每个插件、loader 提供的配置，配置一下即可使用，岂不美哉！当然这还只是我们接触 Webpack 的九牛一毛，对于后面的内容也会越来越复杂，希望能够坚持下去！大家也一样，动手多实践，多修改配置，跑跑试试看，不准会获得意外的惊喜哟！大家加油！
+到这里为止，我们已经看到了 `Webpack` 的强大和高可配置性。按照每个插件、`loader` 提供的配置，配置一下即可使用，岂不美哉！当然这还只是我们接触 `Webpack` 的九牛一毛，对于后面的内容也会越来越复杂，希望能够坚持下去！大家也一样，动手多实践，多修改配置，跑跑试试看，不准会获得意外的惊喜哟！大家加油！
 
 下一节：[环境区分](/di-yi-zhang-ru-men-pei-zhi/15-huan-jing-qu-fen.md)
