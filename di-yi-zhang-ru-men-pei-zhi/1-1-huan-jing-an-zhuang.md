@@ -56,7 +56,7 @@ yarn add webpack --save
 
 `package.json` 是 `npm init` 命令生成的配置文件。
 
-![](/static/package.gif)
+![](/assets/package.gif)
 
 ```json
 {
