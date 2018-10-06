@@ -106,7 +106,7 @@ _loader 支持链式传递。能够对资源使用流水线(pipeline)。一组�
 
 _webpack CLI is a CLI tool for providing a flexible set of commands for developers to increase speed when setting up a custom webpack project. As of webpack v4, webpack is not expecting a configuration file but often, developers want to create a more custom webpack configuration based on their use-cases and needs. Exactly all these cases with webpack CLI we are providing a set of tools to improve the setup of custom webpack configuration._
 
-                                                        -- webpack-cli
+                                                                                                                                -- webpack-cli
                                                         
 `webpack-cli` 是 `webpack` 的命令行工具，用于为开发人员提供一组灵活的命令，以便在设置自定义`webpack` 项目时提高速度。在 `webpack 4` 之前 `webpack-cli` 是必须安装的。
 
