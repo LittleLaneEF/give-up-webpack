@@ -70,22 +70,58 @@
 
 #### Webpack 插件传参
 
-对于上面介绍的 npm 脚本传递 Webpack 配置参数和之前介绍的在 webpack.config.js 里面直接写死 mode 配置的形式，在我们实际的项目开发中是极少用到的，因为他们还不是足够的方便和灵活。
+对于上面介绍的 `npm` 脚本传递 `Webpack` 配置参数和之前介绍的在 `webpack.config.js` 里面直接写死 `mode` 配置的形式，在我们实际的项目开发中是极少用到的，因为他们还不是足够的方便和灵活。
 
-接下来，我们来介绍一个 npm scripts 传参工具 [cross-env](https://www.npmjs.com/package/cross-env) 和一个 Webpack 插件 [DefinePlugin](https://www.webpackjs.com/plugins/define-plugin/)，他们两个的结合可以定义出任何你需要的环境，接受你需要往 Webpack 打包时传递的任何参数。
+接下来，我们来介绍一个 `npm scripts` 传参工具 [cross-env](https://www.npmjs.com/package/cross-env) 可以定义出任何你需要的环境，接受你需要往 `Webpack` 打包时传递的任何参数。
 
-- DefinePlugin：DefinePlugin 插件是 Webpack 内置的插件，所以他不需要单独安装。
+- cross-env：`cross-env` 是第三方的一个工具
 
-_DefinePlugin 允许创建一个在编译时可以配置的全局常量。这可能会对开发模式和发布模式的构建允许不同的行为非常有用。如果在开发构建中，而不在发布构建中执行日志记录，则可以使用全局常量来决定是否记录日志。这就是 DefinePlugin 的用处，设置它，就可以忘记开发和发布构建的规则。_
+_cross-env makes it so you can have a single command without worrying about setting or using the environment variable properly for the platform. Just set it like you would if it's running on a POSIX system, and cross-env will take care of setting it properly._
 
-                                                                                                                        -- Webpack DefinePlugin
-                                          
+_`cross-env` 使得您可以拥有一个命令，而无需担心为平台正确设置或使用环境变量。 只需设置它就像在 `POSIX` 系统上运行一样，并且交叉环境将负责正确设置它。_
 
+                                                                                                                                -- npm cross-env
+                                                                                                                                                                                                                                                                                          
+`cross-env` 使你通过命令传递参数变得容易，而且是跨平台的。这个工具要单独安装！
 
--cross-env：
+```json
+{
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js"
+  }
+}
+```
+
+- 实践操作
+
+按照我们之前介绍的，要根据我们执行的命令传参不同指定 `Webpack` 打包环境，首先我们得使用 `cross-env` 工具在执行命令的时候传递不同的环境参数，然后我们在 `webpack.config.js` 里面根据定义的传递的参数指定 `mode` 的值就 `OK` 了！
+
+首先我们通过 `npm install cross-env --save-dev` 或者 `yarn add cross-env --save-dev` 安装 `cross-env` 工具包！
+然后在 `package.json` 中添加两个命令：
+
+```json
+"scripts": {
+    "build": "webpack --mode development",
++   "build:Pro": "cross-env NODE_ENV=production webpack",
++   "build:Dev": "cross-env NODE_ENV=development webpack"
+}
+```
+
+最后在 `webpack.config.js` 里面指定 `mode` 的值就可以了！
+
+```javascript
+mode: process.env.NODE_ENV
+```
+
+因为 `cross-env` 传递的参数是写入到 `process.env` 对象里面的，所以我们直接按对象取值就 `OK` 了。
+
+配置好之后，我们在控制台分别运行 `npm run build:Pro` 和 `npm run build:Dev` ，打包的结果和我们之前两种方式是一样的。
+
+### 总结
+
+到这里，本小节的介绍就结束了。环境的区分方式我们介绍了三种，都是直接或间接的指定 `mode` 的值。前两种比较简单，但是实际的项目开发中基本不会用，因为他们的局限性都太大了，而且不灵活。最后一种借助了第三方的工具，在命令里面传递所需要的参数，然后在 `webpack.config.js` 里面通过 `process.env` 进行获取，这种方法适合实际项目开发中复杂的 `Webpack` 打包配置。
 
 外链接：
 
 npm scripts：http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html
 cross-env：https://www.npmjs.com/package/cross-env
-DefinePlugin：https://www.webpackjs.com/plugins/define-plugin/
