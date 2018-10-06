@@ -134,4 +134,4 @@ entry: {
 
 这一小节，我们初次接触了 `Webpack` 的打包，了解了 `Webpack` 打包的日志输出，对 `entry` 和 `output` 做了很浅显的了解。其他还有一个概念，在这里就不做介绍了，我们后续都会开出单独的小节介绍，比如 `chunk`、`entry`、`output` 等等。
 
-下一小节：接触loader
+下一小节：[接触loader](/di-yi-zhang-ru-men-pei-zhi/1-3-jie-chu-loader.md)

@@ -123,5 +123,5 @@ mode: process.env.NODE_ENV
 
 外链接：
 
-npm scripts：http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html
-cross-env：https://www.npmjs.com/package/cross-env
+[npm scripts](http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html)
+[cross-env](https://www.npmjs.com/package/cross-env)
