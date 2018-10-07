@@ -281,7 +281,7 @@ hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功
 
 配置完成后，在控制台执行 npm run start 以开发模式启动 webpack-dev-server。等打包完成后 webpack-dev-server 会起一个监听 8080 端口的本地 HTTP 服务，我们直接在浏览器输入 localhost:8080 即可访问。
 
-- 修改 ./src/index.js 测试效果
+- 1.0 修改 ./src/index.js 测试效果
 
 将 document.querySelector('#app').innerHTML = 'Hello Plugin!';  修改成 document.querySelector('#app').innerHTML = 'Hello Plugin update!'; 
 
@@ -291,29 +291,42 @@ hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功
 
 我们发现当我们修改了 ./src/index.js 文件后点击保存，左下角的终端就立即开始进行打包了。Webpack 打包完成后，左上角的浏览器
 
-![](/assets/hmr2.gif)
-![](/assets/hmr3.gif)
-![](/assets/hmr 4.gif)
+- 2.0 修改 ./src/index.js 测试效果
 
+![](/assets/hmr2.gif)
+
+```
 [WDS] App updated. Recompiling...
 client:218 [WDS] App hot update...
 log.js:24 [HMR] Checking for updates on the server...
 log.js:24 [HMR] Updated modules:
 log.js:24 [HMR]  - ./src/index.js
 log.js:24 [HMR] App is up to date.
+```
+- 1.0 修改 ./src/style/index.css 测试效果
 
+![](/assets/hmr3.gif)
+
+```
 [WDS] App updated. Recompiling...
 client:218 [WDS] App hot update...
 log.js:24 [HMR] Checking for updates on the server...
 log.js:24 [HMR] Nothing hot updated.
 log.js:24 [HMR] App is up to date.
+```
 
+- 2.0 修改 ./src/style/index.css 测试效果
+
+![](/assets/hmr 4.gif)
+
+```
 [WDS] App updated. Recompiling...
 client:218 [WDS] App hot update...
 log.js:24 [HMR] Checking for updates on the server...
 log.js:24 [HMR] Updated modules:
 log.js:16 [HMR]  - ./src/style/index.css
 log.js:24 [HMR] App is up to date.
+```
 
 
 ### 总结
