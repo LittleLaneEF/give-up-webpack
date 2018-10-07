@@ -359,20 +359,71 @@ U 		color: #000;
 
 - 2.0 修改 `./src/style/index.css` 测试效果
 
+修改 `webpack.config.js` 配置
+
+```diff
+module: {
+    rules: [
+      {
+        test: /\.css$/,
+        
+        // 注意这里 loader 配置的顺序，样式文件依次从右到左经过 use 配置 loader 的处理
+        // css-loader 是解析样式文件
+        // style-loader 是将解析后的样式渲染在页面上
+U     use: ['style-loader', 'css-loader']      
+      }
+    ]
+  },
+```
+重新在控制台运行 `npm run start` ，然后修改 `./src/style/index.css` 样式文件并保存。嘿，起作用了，和 `hmr` `JavaScript` 一样的效果，有木有！
+
 ![](/assets/hmr 4.gif)
 
 ```
 [WDS] App updated. Recompiling...
 client:218 [WDS] App hot update...
 log.js:24 [HMR] Checking for updates on the server...
+
+-> 没有更新模块 
+[HMR] Nothing hot updated.
+
+-> 有更新模块
 log.js:24 [HMR] Updated modules:
 log.js:16 [HMR]  - ./src/style/index.css
 log.js:24 [HMR] App is up to date.
 ```
 
+这里显示热重载的模块是 `./src/style/index.css`。
+
+`hmr` `css` 功能是实现了，但是我们之前需要提取样式文件的功能却不能实现，不能这样呀。在分析一下，`hmr` `css` 是为了我们在开发时实现样式文件热重载，只要我们一改变样式文件，`Webpack` 就会自动打包样式文件，实现无刷新重载页面样式，免去了我们手动刷新的操作。`extract-text-webpack-plugin` 提取样式文件是为了将样式文件集中到一个文件，减少网络请求，这个功能在开发环境是不必要的，但是在生产环境是有用的，毕竟我们所做的优化都是为了生产环境能给用户带来更好的体验。所以我们只有这样作出折中，只在生产环境进行 `extract-text-webpack-plugin` 提取样式文件。
+
+修改配置如下：
+
+```javascript
+module: {
+  rules: [
+    {
+      test: /\.css$/,
+      
+      // 注意这里 loader 配置的顺序，样式文件依次从右到左经过 use 配置 loader 的处理
+      // css-loader 是解析样式文件
+      // style-loader 是将解析后的样式渲染在页面上
+      use: process.env.NODE_ENV === 'development' ? ['style-loader', 'css-loader'] : ExtractTextWebpackPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader']
+      }),
+    }
+  ]
+},
+```
+
+配置修改完成后，在控制台重新运行 `npm run start` ，修改样式文件、`JavaScript` 文件 `hmr` 效果不变。重新运行 `npm run build:Pro` `dist` 目录单独的样式文件生成了。
+
+一个简单的具有本地开发服务，`hmr`，模拟测试、线上打包的开发环境就搭建好了。
 
 ### 总结
 
+最后打个总结吧！我们从简单到复杂的搭建了一个本地开发环境，途中我们遇到问题又解决问题，但是条理还是比较清晰的，希望读者不要只看，要动手实践。不要问题 GIF 图为什么这么模糊，其实我是故意的，就是想你们动手实操，这样你们掌握的东西会更多。从下次开始，我们就要进入新的一章了，讲解 Webpack 的几个核心的概念，大家加油！
 
 外链接：
 
@@ -383,3 +434,6 @@ log.js:24 [HMR] App is up to date.
 - [html-webpack-plugin](https://www.webpackjs.com/plugins/html-webpack-plugin/)
 - [hot-module-replacement](https://webpack.docschina.org/api/hot-module-replacement/)
 - [hmr css](https://www.jianshu.com/p/4233ce3d9839)
+
+下一章：[核心概念](/di-er-zhang-he-xin-gai-nian.md)
+
