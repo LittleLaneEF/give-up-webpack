@@ -355,6 +355,8 @@ U 		color: #000;
 
 保存文件，在之前启动的服务基础上，页面样式纹丝不动，丝毫没有波澜。`Chrome` 控制台输出了 `Nothing hot updated` ，没有要更新的模块，怎么可能，样式文件分明变了！
 
+[HMR 修改样式表](https://webpack.docschina.org/guides/hot-module-replacement/#hmr-%E4%BF%AE%E6%94%B9%E6%A0%B7%E5%BC%8F%E8%A1%A8)
+
 
 - 2.0 修改 `./src/style/index.css` 测试效果
 
