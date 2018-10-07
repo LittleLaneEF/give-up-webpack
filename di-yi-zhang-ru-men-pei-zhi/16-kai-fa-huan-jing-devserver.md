@@ -289,7 +289,7 @@ hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功
 
 ![](/assets/hmr1.gif)
 
-我们发现当我们修改了 ./src/index.js 文件后点击保存，左下角的终端就立即开始进行打包了。Webpack 打包完成后，左上角的浏览器
+我们发现当我们修改了 ./src/index.js 文件后点击保存，左下角的终端就立即开始进行打包了。Webpack 打包完成后，左上角的浏览器开始显示新的内容，但是显示效果是整个页面连同 Chrome 控制台整个刷新了。新的内容是显示的，但是这个显示的效果也忒不正常了吧，而且 Chrome 控制台还显示 Hot Module Replacement enable。这是怎么回事呢？命名显示 hmr 已经启动，但是效果却不是 hmr 的效果。
 
 - 2.0 修改 ./src/index.js 测试效果
 
