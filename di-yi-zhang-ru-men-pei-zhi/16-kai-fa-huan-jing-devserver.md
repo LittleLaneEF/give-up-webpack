@@ -328,6 +328,8 @@ GIF 图显示，当我们修改 document.querySelector('#app').innerHTML = 'Hell
 ```
 上面的日志显示：当我们修改 ./src/index.js 文件并保存时，WDS（webpack-dev-server）提示 App 代码更新了，Webpack 启动重新编译。等 Webpack 将源代码打包完后，WDS（webpack-dev-server）提示 App 需要热更新。随后 HMR（Hot Module Replacement）开始在本地服务上检查是否有需要更新的模块。如果有需要更新的模块，就会跟新模块并显示更新模块的路径，如果没有需要更新的模块，就会显示 Nothing hot updated。
 
+到这里为止，JavaScript module 热重载的问题就解决了。接下来，我们就在整理样式文件的热重载吧！
+
 - 1.0 修改 ./src/style/index.css 测试效果
 
 ![](/assets/hmr3.gif)
