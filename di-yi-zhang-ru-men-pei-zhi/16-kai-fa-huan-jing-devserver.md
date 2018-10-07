@@ -208,13 +208,122 @@ _clean-webpack-plugin: /Users/lane/StudyCloud/Webpack/give-up-webpack-cases/Dev-
 
 #### 高阶 devServer
 
+在进阶部分我们介绍了两个开发模式非常实用的两个插件，这让我们搭建的开发环境和我们这一小节的目标更近了一步。接下来，我们将加入极其重要的功能 -- hmr。
+
+hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功能之一，它能监听文件的变化，然后修改更新的模块，在不刷新整个浏览器页面的同时，重新渲染变化部分。
+
+废话不多说，我们一起来修改配置吧！
+
+- 修改 package.json
+
+```json
+ "scripts": {
++  "start": "cross-env NODE_ENV=development webpack-dev-server",
+   "build": "webpack --mode development",
+   "build:Pro": "cross-env NODE_ENV=production webpack",
+   "build:Dev": "cross-env NODE_ENV=development webpack"
+ },
+```
+
+- 修改 webpack.config.js
+
+```javascript
+  const path = require('path');
+  
+  // 这个是要求项目本地要安装 webpack 的
++ const Webpack = require('webpack');
+
+  const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  const CleanWebpackPlugin = require('clean-webpack-plugin');
+  
+  module.exports = {
+    entry: './src',
+    output: {
+      path: path.resolve(__dirname, './dist'),
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          
+          // 注意这里 loader 配置的顺序，样式文件依次从右到左经过 use 配置 loader 的处理
+          // css-loader 是解析样式文件
+          // style-loader 是将解析后的样式渲染在页面上
+          use: ExtractTextWebpackPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader']
+          }),
+        }
+      ]
+    },
+    plugins: [
+      new CleanWebpackPlugin(['dist']),
+      new ExtractTextWebpackPlugin('index.css'),
+      new HtmlWebpackPlugin({
+        // 要进行打包的 html 模板文件
+        template: 'index.html',
+      }),
+      
+      // 引入 HotModuleReplacementPlugin 启用模块热替换(Hot Module Replacement)
++     new Webpack.HotModuleReplacementPlugin(),
+
+    ],
+    devServer: {
+    
+      // 启用 webpack 的模块热替换特性，这个参数必须要配合 HotModuleReplacementPlugin 一起使用
+      // 如果你是在命令行以 webpack-dev-server --hot 进行启动就不需要配置 HotModuleReplacementPlugin 了
++     hot: true,
+    },
+    mode: process.env.NODE_ENV,
+  }
+```
+
+配置完成后，在控制台执行 npm run start 以开发模式启动 webpack-dev-server。等打包完成后 webpack-dev-server 会起一个监听 8080 端口的本地 HTTP 服务，我们直接在浏览器输入 localhost:8080 即可访问。
+
+- 修改 ./src/index.js 测试效果
+
+将 document.querySelector('#app').innerHTML = 'Hello Plugin!';  修改成 document.querySelector('#app').innerHTML = 'Hello Plugin update!'; 
+
+效果如下图：
+
+![](/assets/hmr1.gif)
+
+我们发现当我们修改了 ./src/index.js 文件后点击保存，左下角的终端就立即开始进行打包了。Webpack 打包完成后，左上角的浏览器
+
+![](/assets/hmr2.gif)
+![](/assets/hmr3.gif)
+![](/assets/hmr 4.gif)
+
+[WDS] App updated. Recompiling...
+client:218 [WDS] App hot update...
+log.js:24 [HMR] Checking for updates on the server...
+log.js:24 [HMR] Updated modules:
+log.js:24 [HMR]  - ./src/index.js
+log.js:24 [HMR] App is up to date.
+
+[WDS] App updated. Recompiling...
+client:218 [WDS] App hot update...
+log.js:24 [HMR] Checking for updates on the server...
+log.js:24 [HMR] Nothing hot updated.
+log.js:24 [HMR] App is up to date.
+
+[WDS] App updated. Recompiling...
+client:218 [WDS] App hot update...
+log.js:24 [HMR] Checking for updates on the server...
+log.js:24 [HMR] Updated modules:
+log.js:16 [HMR]  - ./src/style/index.css
+log.js:24 [HMR] App is up to date.
+
+
 ### 总结
 
 
 外链接：
 
 - [devServer](https://www.webpackjs.com/configuration/dev-server/)
+- [output publicPath](https://www.webpackjs.com/configuration/output/#output-publicpath)
 - [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 - [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware)
-- [output publicPath](https://www.webpackjs.com/configuration/output/#output-publicpath)
 - [html-webpack-plugin](https://www.webpackjs.com/plugins/html-webpack-plugin/)
+- [hot-module-replacement](https://webpack.docschina.org/api/hot-module-replacement/)
