@@ -307,18 +307,27 @@ hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功
 +	}
 ```
 
-
+再在控制台重新运行 npm run start 命令，运行效果及日志如下：
 
 ![](/assets/hmr2.gif)
 
+GIF 图显示，当我们修改 document.querySelector('#app').innerHTML = 'Hello Plugin!'; 为 document.querySelector('#app').innerHTML = 'Hello Plugin update!'; 并保存时，还是左下角的终端率先显示文件变化后 Webpack 开始打包源代码，左上角的浏览器随后在没有刷新整个页面的情况下显示了变化的内容，而且 Chrome 控制台也输出了相关的日志信息。
+
 ```
 [WDS] App updated. Recompiling...
-client:218 [WDS] App hot update...
-log.js:24 [HMR] Checking for updates on the server...
-log.js:24 [HMR] Updated modules:
-log.js:24 [HMR]  - ./src/index.js
-log.js:24 [HMR] App is up to date.
+[WDS] App hot update...
+[HMR] Checking for updates on the server...
+
+-> 没有更新模块 
+[HMR] Nothing hot updated.
+
+-> 有更新模块
+[HMR] Updated modules:
+[HMR]  - ./src/index.js
+[HMR] App is up to date.
 ```
+上面的日志显示：当我们修改 ./src/index.js 文件并保存时，WDS（webpack-dev-server）提示 App 代码更新了，Webpack 启动重新编译。等 Webpack 将源代码打包完后，WDS（webpack-dev-server）提示 App 需要热更新。随后 HMR（Hot Module Replacement）开始在本地服务上检查是否有需要更新的模块。如果有需要更新的模块，就会跟新模块并显示更新模块的路径，如果没有需要更新的模块，就会显示 Nothing hot updated。
+
 - 1.0 修改 ./src/style/index.css 测试效果
 
 ![](/assets/hmr3.gif)
