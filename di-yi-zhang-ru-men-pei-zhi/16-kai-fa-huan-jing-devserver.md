@@ -357,7 +357,6 @@ U 		color: #000;
 
 [HMR 修改样式表](https://webpack.docschina.org/guides/hot-module-replacement/#hmr-%E4%BF%AE%E6%94%B9%E6%A0%B7%E5%BC%8F%E8%A1%A8)展示的 Demo 和我的配置差不多呀，我们就是用插件提取了样式文件而已，难道问题就在这里？
 
-
 - 2.0 修改 `./src/style/index.css` 测试效果
 
 ![](/assets/hmr 4.gif)
