@@ -147,7 +147,7 @@ output: {
 
 此时我们去控制台运行 `npm run start` 试试，效果和之前一样的，不过相对之前，我们关注点更少了！
 
-根据上面的配置信息，我们在控制台执行 webpack，发现控制台输出了我们熟悉的日志信息，然后在项目根目录下生成了 dist 目录，打开 dist 目录发现此时有 index.css，index.html 和 main.js 三个文件，index.html 文件在我们之前的项目打包中是看不到的。再看看 index.html 文件的源码
+根据上面的配置信息，我们在控制台执行 `webpack`，发现控制台输出了我们熟悉的日志信息，然后在项目根目录下生成了 `dist` 目录，打开 `dist` 目录发现此时有 `index.css`，`index.html` 和 `main.js` 三个文件，`index.html` 文件在我们之前的项目打包中是看不到的。再看看 `index.html` 文件的源码
 
 ```html
   <!DOCTYPE html>
@@ -164,15 +164,15 @@ output: {
   </html>
 ```
 
-静态资源自动引入了，而且资源引入的路径和我们之前没有配置 output publicPath 参数的时候是一样的，证明了我们上面的解释。你是不是对 Webpack 越来越感兴趣了呢？
+静态资源自动引入了，而且资源引入的路径和我们之前没有配置 `output` `publicPath` 参数的时候是一样的，证明了我们上面的解释。你是不是对 `Webpack` 越来越感兴趣了呢？
 
 反正我是！
 
 - 输出文件目录清空
 
-对项目源代码进行打包是高重复性的操作，每次打包都会生成 dist 目录。对于 dist 目录里面的文件，我们希望前面打包生成的文件对本次打包的文件没有影响，毕竟我们是要上生产环境的。我们也不可能每次上生产的时候去删除 dist 目录吧，这样就不能体现程序猿懒得精神的，所以 [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) 插件应运而生。
+对项目源代码进行打包是高重复性的操作，每次打包都会生成 `dist` 目录。对于 `dist` 目录里面的文件，我们希望前面打包生成的文件对本次打包的文件没有影响，毕竟我们是要上生产环境的。我们也不可能每次上生产的时候去删除 `dist` 目录吧，这样就不能体现程序猿懒得精神的，所以 [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) 插件应运而生。
 
-clean-webpack-plugin 是一个用来在 build 源代码前移除或清空目标目录的 Webpack 插件。
+`clean-webpack-plugin` 是一个用来在 `build` 源代码前移除或清空目标目录的 `Webpack` 插件。
 
 `npm install --save-dev clean-webpack-plugin` 或者 `yarn add --save-dev clean-webpack-plugin` 安装插件，然后安排配置：
 
@@ -195,11 +195,11 @@ clean-webpack-plugin 是一个用来在 build 源代码前移除或清空目标�
   ],
 ```
 
-配置好后，然后在控制台运行 webpack 进行打包。
+配置好后，然后在控制台运行 `webpack` 进行打包。
 
 ![](/assets/cleanPlugin.gif)
 
-效果新明显，发现在打包一开始 dist 目录就被删除了，然后打包完成后，dist 目录又生成了。
+效果新明显，发现在打包一开始 `dist` 目录就被删除了，然后打包完成后，`dist` 目录又生成了。
 
 在看看控制台的输出，第一句话就是 
 _clean-webpack-plugin: /Users/lane/StudyCloud/Webpack/give-up-webpack-cases/Dev-Server/dist has been removed._
@@ -208,13 +208,13 @@ _clean-webpack-plugin: /Users/lane/StudyCloud/Webpack/give-up-webpack-cases/Dev-
 
 #### 高阶 devServer
 
-在进阶部分我们介绍了两个开发模式非常实用的两个插件，这让我们搭建的开发环境和我们这一小节的目标更近了一步。接下来，我们将加入极其重要的功能 -- hmr。
+在进阶部分我们介绍了两个开发模式非常实用的两个插件，这让我们搭建的开发环境和我们这一小节的目标更近了一步。接下来，我们将加入极其重要的功能 -- `hmr`。
 
-hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功能之一，它能监听文件的变化，然后修改更新的模块，在不刷新整个浏览器页面的同时，重新渲染变化部分。
+`hmr`(全称 `hot module replacement` 模块热替换)是 Webpack 提供的重要功能之一，它能监听文件的变化，然后修改更新的模块，在不刷新整个浏览器页面的同时，重新渲染变化部分。
 
 废话不多说，我们一起来修改配置吧！
 
-- 修改 package.json
+- 修改 `package.json`
 
 ```json
  "scripts": {
@@ -225,7 +225,7 @@ hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功
  },
 ```
 
-- 修改 webpack.config.js
+- 修改 `webpack.config.js`
 
 ```javascript
   const path = require('path');
@@ -279,21 +279,21 @@ hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功
   }
 ```
 
-配置完成后，在控制台执行 npm run start 以开发模式启动 webpack-dev-server。等打包完成后 webpack-dev-server 会起一个监听 8080 端口的本地 HTTP 服务，我们直接在浏览器输入 localhost:8080 即可访问。
+配置完成后，在控制台执行 `npm run start` 以开发模式启动 `webpack-dev-server`。等打包完成后 `webpack-dev-server` 会起一个监听 `8080` 端口的本地 `HTTP` 服务，我们直接在浏览器输入 `localhost:8080` 即可访问。
 
-- 1.0 修改 ./src/index.js 测试效果
+- 1.0 修改 `./src/index.js` 测试效果
 
-将 document.querySelector('#app').innerHTML = 'Hello Plugin!';  修改成 document.querySelector('#app').innerHTML = 'Hello Plugin update!'; 
+将 `document.querySelector('#app').innerHTML = 'Hello Plugin!';`  修改成 `document.querySelector('#app').innerHTML = 'Hello Plugin update!';`
 
 效果如下图：
 
 ![](/assets/hmr1.gif)
 
-我们发现当我们修改了 ./src/index.js 文件后点击保存，左下角的终端就立即开始进行打包了。Webpack 打包完成后，左上角的浏览器开始显示新的内容，但是显示效果是整个页面连同 Chrome 控制台整个刷新了。新的内容是显示的，但是这个显示的效果也忒不正常了吧，而且 Chrome 控制台还显示 Hot Module Replacement enable。这是怎么回事呢？命名显示 hmr 已经启动，但是效果却不是 hmr 的效果。
+我们发现当我们修改了 `./src/index.js` 文件后点击保存，左下角的终端就立即开始进行打包了。`Webpack` 打包完成后，左上角的浏览器开始显示新的内容，但是显示效果是整个页面连同 `Chrome` 控制台整个刷新了。新的内容是显示的，但是这个显示的效果也忒不正常了吧，而且 `Chrome` 控制台还显示 `Hot Module Replacement enable`。这是怎么回事呢？命名显示 `hmr` 已经启动，但是效果却不是 `hmr` 的效果。
 
-[hot-module-replacement guides](https://webpack.docschina.org/guides/hot-module-replacement/) 这里有例子描述：当我们在 webpack.config.js 里面配置 new webpack.HotModuleReplacementPlugin() 后，它会在全局暴露一个 module.hot 的监听，要在 App 的入口 JavaScript 文件加入这个监听。尝试一下准没错！
+[hot-module-replacement guides](https://webpack.docschina.org/guides/hot-module-replacement/) 这里有例子描述：当我们在 `webpack.config.js` 里面配置 `new webpack.HotModuleReplacementPlugin()` 后，它会在全局暴露一个 `module.hot` 的监听，要在 `App` 的入口 `JavaScript` 文件加入这个监听。尝试一下准没错！
 
-- 2.0 修改 ./src/index.js 测试效果
+- 2.0 修改 `./src/index.js` 测试效果
 
 修改 ./src/index.js 文件
 
@@ -307,11 +307,11 @@ hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功
 +	}
 ```
 
-再在控制台重新运行 npm run start 命令，运行效果及日志如下：
+再在控制台重新运行 `npm run start` 命令，运行效果及日志如下：
 
 ![](/assets/hmr2.gif)
 
-GIF 图显示，当我们修改 document.querySelector('#app').innerHTML = 'Hello Plugin!'; 为 document.querySelector('#app').innerHTML = 'Hello Plugin update!'; 并保存时，还是左下角的终端率先显示文件变化后 Webpack 开始打包源代码，左上角的浏览器随后在没有刷新整个页面的情况下显示了变化的内容，而且 Chrome 控制台也输出了相关的日志信息。
+`GIF` 图显示，当我们修改 `document.querySelector('#app').innerHTML = 'Hello Plugin!';` 为 `document.querySelector('#app').innerHTML = 'Hello Plugin update!';` 并保存时，还是左下角的终端率先显示文件变化后 `Webpack` 开始打包源代码，左上角的浏览器随后在没有刷新整个页面的情况下显示了变化的内容，而且 `Chrome` 控制台也输出了相关的日志信息。
 
 ```
 [WDS] App updated. Recompiling...
@@ -326,11 +326,11 @@ GIF 图显示，当我们修改 document.querySelector('#app').innerHTML = 'Hell
 [HMR]  - ./src/index.js
 [HMR] App is up to date.
 ```
-上面的日志显示：当我们修改 ./src/index.js 文件并保存时，WDS（webpack-dev-server）提示 App 代码更新了，Webpack 启动重新编译。等 Webpack 将源代码打包完后，WDS（webpack-dev-server）提示 App 需要热更新。随后 HMR（Hot Module Replacement）开始在本地服务上检查是否有需要更新的模块。如果有需要更新的模块，就会跟新模块并显示更新模块的路径，如果没有需要更新的模块，就会显示 Nothing hot updated。
+上面的日志显示：当我们修改 `./src/index.js` 文件并保存时，`WDS（webpack-dev-server）`提示 `App` 代码更新了，`Webpack` 启动重新编译。等 `Webpack` 将源代码打包完后，`WDS（webpack-dev-server）`提示 `App` 需要热更新。随后 `HMR（Hot Module Replacement）`开始在本地服务上检查是否有需要更新的模块。如果有需要更新的模块，就会跟新模块并显示更新模块的路径，如果没有需要更新的模块，就会显示 `Nothing hot updated`。
 
-到这里为止，JavaScript module 热重载的问题就解决了。接下来，我们就在整理样式文件的热重载吧！
+到这里为止，`JavaScript module` 热重载的问题就解决了。接下来，我们就在整理样式文件的热重载吧！
 
-- 1.0 修改 ./src/style/index.css 测试效果
+- 1.0 修改 `./src/style/index.css` 测试效果
 
 ![](/assets/hmr3.gif)
 
@@ -342,7 +342,7 @@ log.js:24 [HMR] Nothing hot updated.
 log.js:24 [HMR] App is up to date.
 ```
 
-在上面配置文件的基础上，我们修改 ./src/style/index.css 试试效果，应该不会出什么岔子的，毕竟 JavaScript modules 都跑通了。
+在上面配置文件的基础上，我们修改 `./src/style/index.css` 试试效果，应该不会出什么岔子的，毕竟 `JavaScript modules` 都跑通了。
 
 修改 ./src/style/index.css 文件
 
@@ -353,10 +353,10 @@ U 		color: #000;
 	}
 ```
 
-保存文件，在之前启动的服务基础上，页面样式纹丝不动，丝毫没有波澜。Chrome 控制台输出了 Nothing hot updated ，没有要更新的模块，怎么可能，样式文件分明变了！
+保存文件，在之前启动的服务基础上，页面样式纹丝不动，丝毫没有波澜。`Chrome` 控制台输出了 `Nothing hot updated` ，没有要更新的模块，怎么可能，样式文件分明变了！
 
 
-- 2.0 修改 ./src/style/index.css 测试效果
+- 2.0 修改 `./src/style/index.css` 测试效果
 
 ![](/assets/hmr 4.gif)
 
