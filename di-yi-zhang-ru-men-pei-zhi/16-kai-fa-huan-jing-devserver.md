@@ -295,6 +295,20 @@ hmr(全称 hot module replacement 模块热替换)是 Webpack 提供的重要功
 
 - 2.0 修改 ./src/index.js 测试效果
 
+修改 ./src/index.js 文件
+
+```diff
+	import './style/index.css';
+
+	document.querySelector('#app').innerHTML = 'Hello Plugin!'; 
+
++	if(module.hot) {
++		module.hot.accept()
++	}
+```
+
+
+
 ![](/assets/hmr2.gif)
 
 ```
