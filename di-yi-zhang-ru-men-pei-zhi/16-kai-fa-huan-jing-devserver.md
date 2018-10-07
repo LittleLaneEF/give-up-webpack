@@ -342,6 +342,20 @@ log.js:24 [HMR] Nothing hot updated.
 log.js:24 [HMR] App is up to date.
 ```
 
+在上面配置文件的基础上，我们修改 ./src/style/index.css 试试效果，应该不会出什么岔子的，毕竟 JavaScript modules 都跑通了。
+
+修改 ./src/style/index.css 文件
+
+```diff
+	body{
+  		background-color: red;
+U 		color: #000;
+	}
+```
+
+保存文件，在之前启动的服务基础上，页面样式纹丝不动，丝毫没有波澜。Chrome 控制台输出了 Nothing hot updated ，没有要更新的模块，怎么可能，样式文件分明变了！
+
+
 - 2.0 修改 ./src/style/index.css 测试效果
 
 ![](/assets/hmr 4.gif)
