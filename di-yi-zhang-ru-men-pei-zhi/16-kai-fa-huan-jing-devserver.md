@@ -147,11 +147,64 @@ output: {
 
 此时我们去控制台运行 `npm run start` 试试，效果和之前一样的，不过相对之前，我们关注点更少了！
 
+根据上面的配置信息，我们在控制台执行 webpack，发现控制台输出了我们熟悉的日志信息，然后在项目根目录下生成了 dist 目录，打开 dist 目录发现此时有 index.css，index.html 和 main.js 三个文件，index.html 文件在我们之前的项目打包中是看不到的。再看看 index.html 文件的源码
+
+```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello Plugin</title>
+  <link href="index.css" rel="stylesheet"></head>
+  <body>
+    <div id="app"></div>
+  <script type="text/javascript" src="main.js"></script></body>
+  </html>
+```
+
+静态资源自动引入了，而且资源引入的路径和我们之前没有配置 output publicPath 参数的时候是一样的，证明了我们上面的解释。你是不是对 Webpack 越来越感兴趣了呢？
+
+反正我是！
+
 - 输出文件目录清空
 
-根据上面的配置信息，我们在控制台执行 
+对项目源代码进行打包是高重复性的操作，每次打包都会生成 dist 目录。对于 dist 目录里面的文件，我们希望前面打包生成的文件对本次打包的文件没有影响，毕竟我们是要上生产环境的。我们也不可能每次上生产的时候去删除 dist 目录吧，这样就不能体现程序猿懒得精神的，所以 [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin) 插件应运而生。
 
+clean-webpack-plugin 是一个用来在 build 源代码前移除或清空目标目录的 Webpack 插件。
 
+`npm install --save-dev clean-webpack-plugin` 或者 `yarn add --save-dev clean-webpack-plugin` 安装插件，然后安排配置：
+
+引入：
+
+```javascript
+  const CleanWebpackPlugin = require('clean-webpack-plugin');
+```
+
+配置 plugins：
+
+```javascript
+  plugins: [
++   new CleanWebpackPlugin(['dist']),
+    new ExtractTextWebpackPlugin('index.css'),
+    new HtmlWebpackPlugin({
+      // 要进行打包的 html 模板文件
+      template: 'index.html',
+    }),
+  ],
+```
+
+配置好后，然后在控制台运行 webpack 进行打包。
+
+![](/assets/cleanPlugin.gif)
+
+效果新明显，发现在打包一开始 dist 目录就被删除了，然后打包完成后，dist 目录又生成了。
+
+在看看控制台的输出，第一句话就是 
+_clean-webpack-plugin: /Users/lane/StudyCloud/Webpack/give-up-webpack-cases/Dev-Server/dist has been removed._
+
+大家可以私下试试效果，一定要动手操作哟！
 
 #### 高阶 devServer
 
