@@ -1,4 +1,4 @@
-<iframe src="/assets/logo.svg" width="300" height="100"></iframe>
+![](/assets/logo.svg)
 
 关于本次分享的萌芽有三个导火索：
 
