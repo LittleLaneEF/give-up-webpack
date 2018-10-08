@@ -112,4 +112,6 @@ _webpack CLI is a CLI tool for providing a flexible set of commands for develope
 
 当你的控制台提示要安装 `webpack-cli` 时，那你的 `webpack` 版本一定是 `<4` 的。你有两个选择：一是升级你的 `webpack` 版本，二是安装 `webpack-cli` 。
 
+查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/Hello-Loader)！
+
 下一节：[使用 `plugins`](/di-yi-zhang-ru-men-pei-zhi/14-shi-yong-plugins.md)
