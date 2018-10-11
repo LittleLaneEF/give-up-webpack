@@ -178,6 +178,8 @@ entry: 'main.js',
 
 需要注意的是，`output` 的配置项和 `context` 没有关系，但是有些插件的配置项和 `context` 有关，下一小节会说明。
 
+关于入口（Entry) 更详细的信息可以查看 [Webpack 官方文档](https://webpack.docschina.org/configuration/entry-context/)！
+
 下一节：[输出（Output）](/di-er-zhang-he-xin-gai-nian/2-1-shu-chu-output.md)
 
 
