@@ -74,9 +74,9 @@ module.exports = {
 
 ### 实战
  
-在实际项目中，我们是通过 npm 脚本（npm scripts）的形式来区分 mode 的，例如我们前面 [1.5 环境区分](/di-yi-zhang-ru-men-pei-zhi/15-huan-jing-qu-fen.md) 里面的案例就有用到。
+在实际项目中，我们是通过 「_npm 脚本（npm scripts）_」的形式来区分 `mode` 的，例如我们前面 [1.5 环境区分](/di-yi-zhang-ru-men-pei-zhi/15-huan-jing-qu-fen.md) 里面的案例就有用到。
 
-首先我们在项目的 package.json 文件中配置了多个 npm 脚本（npm scripts）:
+首先我们在项目的 `package.json` 文件中配置了多个 「_npm 脚本（npm scripts）_」:
 
 ```json
 "scripts": {
@@ -86,11 +86,11 @@ module.exports = {
 },
 ```
 
-- 第一条 build script 使用的 CLI 传参的形式，设置了当前 Webpack 的打包环境是开发模式（development）。
-- 第二条 build script 使用了 cross-env 插件给环境传递了 NODE_ENV=production 的参数，设置了当前 Webpack 的打包环境是生产模式（production）。
-- 第三条 build script 使用了 cross-env 插件给环境传递了 NODE_ENV=development 的参数，设置了当前 Webpack 的打包环境是开发模式（development）。
+- 第一条 `build script` 使用的 `CLI 传参`的形式，设置了当前 `Webpack` 的打包环境是`开发模式（development）`。
+- 第二条 `build script` 使用了 `cross-env` 插件给环境传递了 `NODE_ENV=production` 的参数，设置了当前 `Webpack` 的打包环境是`生产模式（production）`。
+- 第三条 `build script` 使用了 `cross-env` 插件给环境传递了 `NODE_ENV=development` 的参数，设置了当前 `Webpack` 的打包环境是`开发模式（development）`。
 
-然后在 webpack.config.js 里面，我们接受了 cross-env 插件传递的参数，并根据不同的参数值设置给了 mode 不同的值。
+然后在 `webpack.config.js` 里面，我们接受了 `cross-env` 插件传递的参数，并根据不同的参数值设置给了 `mode` 不同的值。
 
 ```javascript
 module.export = {
@@ -98,7 +98,19 @@ module.export = {
 }
 ```
 
-其中 process.env 返回一个当前 node 运行环境中包含用户环境信息的对象。cross-env 插件会将我们在 npm scripts 里面传递的值设置在这个对象中，然后在通过 process.env.NODE_ENV 获取属性值就可以了。
+其中 `process.env` 返回一个当前 `node` 运行环境中包含用户环境信息的对象。`cross-env` 插件会将我们在 `npm scripts` 里面传递的值设置在这个对象中，然后在通过 `process.env.NODE_ENV` 获取属性值并将值赋值给 `mode`，当我们在执行不同的 `npm script` 时就对应的指定 `mode` 属性的，用以区分 `Webpack` 的打包模式了。
+
+## 总结
+
+这一小节比较简单，很多东西我们在 [1.5 环境区分](/di-yi-zhang-ru-men-pei-zhi/15-huan-jing-qu-fen.md) 一小节也已经提及了。我们主要了解了 `mode` 参数值有哪些和各表示的含义，还有介绍了通过 `webpack.config.js` 和 `CLI` 设置 `mode` 属性值，最后详细介绍了在实际项目中结合 `cross-env` 插件来设置 `mode` 区分 `Webpack` 打包模式。
+
+外链接：
+
+1、[process.env](https://segmentfault.com/a/1190000011683741)
+2、[cross-env](https://www.npmjs.com/package/cross-env)
+3、[webpack mode](https://webpack.docschina.org/concepts/mode/#%E7%94%A8%E6%B3%95)
+
+下一节：[loader](/di-er-zhang-he-xin-gai-nian/loader.md)
 
 
 
