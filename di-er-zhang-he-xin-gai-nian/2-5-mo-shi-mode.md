@@ -6,7 +6,7 @@
 
 ### 用法
 
-在 `Webpack` 中给我们提供了两种模式的区分：「_开发环境（development）_」和「_生产环境（production）_」。默认的模式是「_生产环境（production）_」。`mode` 属性值类型是 `string`。模式的指定分 `webpack.config.js` 和 「_CLI 参数传递_」两种形式。
+在 `Webpack` 中给我们提供了两种模式的区分：「_开发模式（development）_」和「_生产模式（production）_」。默认的模式是「_生产模式（production）_」。`mode` 属性值类型是 `string`。模式的指定分 `webpack.config.js` 和 「_CLI 参数传递_」两种形式。
 
 `webpack.config.js` 配置
 
@@ -72,4 +72,34 @@ module.exports = {
 }
 ```
 
-### 
+### 实战
+ 
+在实际项目中，我们是通过 npm 脚本（npm scripts）的形式来区分 mode 的，例如我们前面 [1.5 环境区分](/di-yi-zhang-ru-men-pei-zhi/15-huan-jing-qu-fen.md) 里面的案例就有用到。
+
+首先我们在项目的 package.json 文件中配置了多个 npm 脚本（npm scripts）:
+
+```json
+"scripts": {
+  "build": "webpack --mode development",
+  "build:Pro": "cross-env NODE_ENV=production webpack",
+  "build:Dev": "cross-env NODE_ENV=development webpack"
+},
+```
+
+- 第一条 build script 使用的 CLI 传参的形式，设置了当前 Webpack 的打包环境是开发模式（development）。
+- 第二条 build script 使用了 cross-env 插件给环境传递了 NODE_ENV=production 的参数，设置了当前 Webpack 的打包环境是生产模式（production）。
+- 第三条 build script 使用了 cross-env 插件给环境传递了 NODE_ENV=development 的参数，设置了当前 Webpack 的打包环境是开发模式（development）。
+
+然后在 webpack.config.js 里面，我们接受了 cross-env 插件传递的参数，并根据不同的参数值设置给了 mode 不同的值。
+
+```javascript
+module.export = {
+  mode: process.env.NODE_ENV,
+}
+```
+
+其中 process.env 返回一个当前 node 运行环境中包含用户环境信息的对象。cross-env 插件会将我们在 npm scripts 里面传递的值设置在这个对象中，然后在通过 process.env.NODE_ENV 获取属性值就可以了。
+
+
+
+
