@@ -22,8 +22,8 @@
 * [第四章 实战](di-si-zhang-shi-zhan.md)
 * [第五章 优化](di-wu-zhang-you-hua.md)
 * [第六章 原理](di-liu-zhang-yuan-li.md)
-* [第七章 深入 loader](di-qi-zhang-loader-shen-ru.md)
-* [第八章 深入插件 \(Plugins\)](di-qi-zhang-loader-shen-ru.md)
+* [第七章 深入 loader](di-qi-zhang-shen-ru-loader.md)
+* [第八章 深入 plugin](di-ba-zhangshen-ru-plugin.md)
 * [附录](fu-lu.md)
   * 常用 loaders
   * 常用插件 \(Plugins\)
