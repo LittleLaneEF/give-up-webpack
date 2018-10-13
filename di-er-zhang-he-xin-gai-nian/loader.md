@@ -113,3 +113,9 @@ webpack --module-bind 'css=style-loader!css-loader'
 `loader` 遵循标准的模块解析。多数情况下，`loader` 将从模块路径（通常将模块路径认为是 `npm install`, `node_modules`）解析。
 
 `loader` 模块需要导出为一个函数，并且使用 `Node.js` 兼容的 `JavaScript` 编写。通常使用 `npm` 进行管理，但是也可以将自定义 `loader` 作为应用程序中的文件。按照约定，`loader` 通常被命名为 `xxx-loader`_（例如 json-loader）_。有关详细信息，请查看[第七章 深入loader](/di-qi-zhang-shen-ru-loader.md)？。
+
+## 总结
+
+上面介绍了 loader 的产生为了解决项目代码文件转换的问题，提供了 配置[Configuration]、内联、CLI 三种方式配置 loader，提到了 loader 的几个特性。这只是 loader 的一些简单介绍，后面我们将会开设[单独的章节](/di-qi-zhang-shen-ru-loader.md)深入的讲解 loader 相关的知识！
+
+下一节：[2.5 插件（Plugin）](/di-er-zhang-he-xin-gai-nian/2-4-cha-jian-plugins.md)
