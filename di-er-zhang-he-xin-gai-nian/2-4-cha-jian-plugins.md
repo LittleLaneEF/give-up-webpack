@@ -27,39 +27,60 @@ module.exports = {
 ### 复杂使用例子
 
 ```javascript
-var webpack = require('webpack');
+const glob = require("glob");
+
+const Webpack = require('webpack');
+
 // 导入非 webpack 自带默认插件
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var DashboardPlugin = require('webpack-dashboard/plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const PurifyCSSPlugin = require("purifycss-webpack");
 
 // 在配置中添加插件
 module.exports = {
   //...
   plugins: [
-    // 构建优化插件
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor-[hash].min.js',
+    // 实现 js 压缩
+    new UglifyJsPlugin(),
+    new HtmlWebpackPlugin({
+      // 对文件进行压缩
+      minify: {
+        // 去掉属性的双引号
+        removeAttributeQuotes: true
+      },
+
+      // 给文件的引用加入 hash，以避免 js 缓存
+      hash: true,
+
+      // 要进行打包的 html 模板文件
+      template: "index.html"
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: false,
-      }
+
+    // 指定生成样式的文件名
+    new ExtractTextWebpackPlugin("index.css"),
+
+    new PurifyCSSPlugin({
+      // 配置检查 html 模板的路径
+      paths: glob.sync(path.resolve(__dirname, "*.html"))
     }),
-    new ExtractTextPlugin({
-      filename: 'build.min.css',
-      allChunks: true,
+
+    // 全局的引入第三方工具包，虽然是全局引入，但是只有当有模块使用时才打包，没有模块使用时，是不会打包的
+    // import 不一样，只要模块引入了，不管有没有使用，都会打包
+    new Webpack.ProvidePlugin({
+      dayjs: "dayjs"
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // 编译时(compile time)插件
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
-    }),
-    // webpack-dev-server 强化插件
-    new DashboardPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ]
+
+    // 在打包的 JS 文件头部加入版权或者开发者声明
+    new Webpack.BannerPlugin("lane 版权所有！！！！"),
+
+    // 提取多个 `bundle` 共享的依赖
+    new Webpack.optimize.SplitChunksPlugin({
+     name: "async",
+     minChunks: 1,
+     name: true
+    })
+  ],
 };
 ```
 
