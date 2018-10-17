@@ -26,5 +26,5 @@
 * [附录](fu-lu.md)
   * 常用 loaders
   * 常用插件 \(Plugins\)
-  * 其他学习资源
+  * [其他学习资源](fu-lu/qi-ta-xue-xi-zi-yuan.md)
 
