@@ -6,11 +6,11 @@
 
 ### rules
 
-rules 配置模块的读取和解析规则，通常用来配置 loader。其类型是一个数组，数组里每一项都描述了如何处理部分文件的规则。这些规则能够对模块(module)应用 loader，或者修改解析器(parser)。配置一项 rules 时大致通过以下方式：
+`rules` 配置模块的读取和解析规则，通常用来配置 `loader`。其类型是一个数组，数组里每一项都描述了如何处理部分文件的规则。这些规则能够对「_模块(module)_」应用 `loader`，或者修改「_解析器(parser)_」。配置一项 `rules` 时大致通过以下方式：
 
-- 1、条件匹配：通过 test 、include 、exclude 三个配置项来命中 Loader 要应用规则的文件。
-- 2、应用规则：对匹配的文件通过 use 配置项来应用 Loader，可以只应用一个 loader 或者按照从后往前的顺序应用一组 Loader，同时还可以分别给 loader 传入参数。
-- 3、应用顺序：一组 loader 的执行顺序默认是从右到左执行，通过 enforce 选项可以让其中一个 loader 的执行顺序放到最前或者最后。
+- 1、条件匹配：通过 `test` 、`include` 、`exclude` 三个配置项来命中 `loader` 要应用规则的文件。
+- 2、应用规则：对匹配的文件通过 `use` 配置项来应用 `loader`，可以只应用一个 `loader` 或者按照从后往前的顺序应用一组 `loader`，同时还可以分别给 `loader` 传入参数。
+- 3、应用顺序：一组 `loader` 的执行顺序默认是从右到左执行，通过 `enforce` 选项可以让其中一个 `loader` 的执行顺序放到最前或者最后。
 
 形如我们在 [1.6 开发环境 devServer](/di-yi-zhang-ru-men-pei-zhi/16-kai-fa-huan-jing-devserver.md) 小节处理样式的例子：
 
@@ -32,7 +32,7 @@ module: {
 },
 ```
 
-在这个例子中，我们使用了 rules 配置处理样式文件的一组 loader。在配置中用 test 属性匹配应用这组 loader 的 .css 后缀的样式文件，然后 use 属性配置了处理样式文件的 style-loader 和 css-loader 两个 loader 的信息和执行顺序。
+在这个例子中，我们使用了 `rules` 配置处理样式文件的一组 `loader`。在配置中用 `test` 属性匹配应用这组 `loader` 的 `.css` 后缀的样式文件，然后 `use` 属性配置了处理样式文件的 `style-loader` 和 `css-loader` 两个 `loader` 的信息和执行顺序。
 
 我们可以看一个比较复杂的例子：
 
@@ -70,5 +70,43 @@ module: {
   ]
 }
 ```
+当 `loader` 传参比较多的时候，直接跟在 `loader` 后面就显得格外不方便和难维护，最好是通过 `Object` 对象的形式进行处理，例如下面的形式：
+
+```
+use: [
+  {
+    loader:'babel-loader',
+    options:{
+      cacheDirectory:true,
+    },
+    
+    // enforce: 'post' 的含义是把该 loader 的执行顺序放到最后
+    // enforce 的值还可以是 'pre'，代表把 loader 的执行顺序放到最前面
+    enforce:'post'
+  },
+  // 省略其它 Loader
+]
+```
+
+上面的例子中 `test` `include` `exclude` 这三个命中文件的配置项只传入了一个字符串或正则，其实它们还都支持数组类型，使用如下：
+
+```javascript
+{
+  test:[
+    /\.jsx?$/,
+    /\.tsx?$/
+  ],
+  include:[
+    path.resolve(__dirname, 'src'),
+    path.resolve(__dirname, 'tests'),
+  ],
+  exclude:[
+    path.resolve(__dirname, 'node_modules'),
+    path.resolve(__dirname, 'bower_modules'),
+  ]
+}
+```
+
+数组里的每项之间是「或」的关系，即文件路径符合数组中的任何一个条件就会被命中。
 
 ### noParse
