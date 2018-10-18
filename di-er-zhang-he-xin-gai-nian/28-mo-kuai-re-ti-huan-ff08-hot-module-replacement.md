@@ -46,13 +46,19 @@
 
 这些事情比较有技术性……如果你对其内部不感兴趣，可以随时跳到 [HMR API 页面](https://webpack.docschina.org/api/hot-module-replacement)或 [HMR 指南](https://webpack.docschina.org/guides/hot-module-replacement)。
 
-对于模块系统的 runtime，附加的代码被发送到 parents 和 children 跟踪模块。在管理方面，runtime 支持两个方法 check 和 apply。
+对于模块系统的 `runtime`，附加的代码被发送到 `parents` 和 `children` 跟踪模块。在管理方面，`runtime` 支持两个方法 `check` 和 `apply`。
 
-check 发送 HTTP 请求来更新 manifest。如果请求失败，说明没有可用更新。如果请求成功，待更新 chunk 会和当前加载过的 chunk 进行比较。对每个加载过的 chunk，会下载相对应的待更新 chunk。当所有待更新 chunk 完成下载，就会准备切换到 ready 状态。
+- `check` 发送 `HTTP` 请求来更新 `manifest`。如果请求失败，说明没有可用更新。如果请求成功，待更新 `chunk` 会和当前加载过的 `chunk` 进行比较。对每个加载过的 `chunk`，会下载相对应的待更新 `chunk`。当所有待更新 `chunk` 完成下载，就会准备切换到 `ready` 状态。
 
-apply 方法将所有被更新模块标记为无效。对于每个无效模块，都需要在模块中有一个更新处理函数，或者在它的父级模块们中有更新处理函数。否则，无效标记冒泡，并也使父级无效。每个冒泡继续直到到达应用程序入口起点，或者到达带有更新处理函数的模块（以最先到达为准）。如果它从入口起点开始冒泡，则此过程失败。
+- `apply` 方法将所有被更新模块标记为_无效_。对于每个无效模块，都需要_在模块中有一个更新处理函数，或者在它的父级模块们中有更新处理函数_。否则，无效标记冒泡，并也使父级无效。每个冒泡继续直到到达应用程序入口起点，或者到达带有更新处理函数的模块（以最先到达为准）。如果它从入口起点开始冒泡，则此过程失败。
 
-之后，所有无效模块都被（通过 dispose 处理函数）处理和解除加载。然后更新当前 hash，并且调用所有 "accept" 处理函数。runtime 切换回闲置状态，一切照常继续。
+之后，所有无效模块都被（通过 `dispose` 处理函数）处理和解除加载。然后更新当前 `hash`，并且调用所有 `"accept"` 处理函数。`runtime` 切换回闲置状态，一切照常继续。
+
+### 配置实践
+
+如果想更深入的了解 HMR 的运行机理，可以运行 [1.6 开发环境 devServer](/di-yi-zhang-ru-men-pei-zhi/16-kai-fa-huan-jing-devserver.md) 小节的 Demo，进行修改尝试。在这个项目中，我们使用的 webpack-dev-server 。
+
+下一章：[第三章 实战](/di-san-zhang-pei-zhi.md)
 
 
 
