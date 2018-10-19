@@ -1,3 +1,5 @@
+## 1.4 使用 plugins
+
 在开始这一小节的介绍之前，我们先来分析一下，[前一小节 接触 loader](/di-yi-zhang-ru-men-pei-zhi/1-1-huan-jing-an-zhuang.md) 项目里面由 `Webpack` 编译后最终生成的代码！
 
 拷贝 `Hello-Loader` 项目的代码，生成 `Hello-Plugin` 项目，并在 `Hello-Plugin` 项目根目录下执行 `webpack` 命令进行源代码打包。等打包结束后，会在 `dist` 目录输出最终的代码文件 `main.js`。

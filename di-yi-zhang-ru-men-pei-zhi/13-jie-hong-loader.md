@@ -1,3 +1,5 @@
+## 1.3 接触 loader
+
 上一小节我们喜提 `Hello Webpack`，大家都没有动手操作和消化理解呢？这一小节我们将使用 `loader` 来给我们的页面添加些许样式，大家准备好了吗？
 
 > Let's get starting it!
