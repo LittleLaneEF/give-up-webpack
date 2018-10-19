@@ -1,3 +1,5 @@
+## 1.6 开发环境 devServer
+
 接触过实际项目开发的同学都知道，开发环境有很多强大而又友好的功能，比如本地开发服务，`hmr`，模拟测试、线上打包等！这一小节，我们就来搭建一个极其简单的开发环境（也叫 [devServer](https://www.webpackjs.com/configuration/dev-server/)）。
 
 ### 项目搭建
