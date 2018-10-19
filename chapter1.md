@@ -1,3 +1,5 @@
+## 前置介绍
+
 ![what-is-webpack.png | center | 747x374](https://cdn.nlark.com/yuque/0/2018/png/114852/1538231421415-79be3f70-31b0-429e-9890-08db84e67950.png "")
 
 *Webpack 是一个开源的 JavaScript 模块话打包工具。它主要的功能是打包 JavaScript 文件以便在浏览器中使用。除此之外，它也可以转换、打包任何的资源文件。Webpack 获取具有依赖关系的模块并将这个模块打包生成静态资源文件。它是一个主要用于 JavaScript 模块化打包的工具，但它可以转换HTML，CSS甚至图像等前端资源通过配置相应的插件。*
