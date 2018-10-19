@@ -19,7 +19,7 @@
   * [2.7 模块热替换（hot module replacement）](di-er-zhang-he-xin-gai-nian/28-mo-kuai-re-ti-huan-ff08-hot-module-replacement.md)
 * [第三章 实战](di-san-zhang-pei-zhi.md)
   * [3.1 构建 JavaScript](di-san-zhang-pei-zhi/31-gou-jian-javascript-yu-yan.md)
-  * 3.2 构建 ES6+
+  * [3.2 构建 ES6+](di-san-zhang-pei-zhi/32-gou-jian-es6-+.md)
   * 3.3 构建 TypeScript
   * 3.4 构建 CoffeeScript
   * 3.5 使用 Flow 检查器
