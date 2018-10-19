@@ -128,6 +128,6 @@ mode: process.env.NODE_ENV
 [npm scripts](http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html)
 [cross-env](https://www.npmjs.com/package/cross-env)
 
-查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/Distinct-Environment)！
+查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/1.5%20Distinct-Environment)！
 
 下一节：[开发环境 devServer](/di-yi-zhang-ru-men-pei-zhi/16-kai-fa-huan-jing-devserver.md)

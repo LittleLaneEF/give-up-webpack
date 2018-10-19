@@ -437,7 +437,7 @@ module: {
 - [hot-module-replacement](https://webpack.docschina.org/api/hot-module-replacement/)
 - [hmr css](https://www.jianshu.com/p/4233ce3d9839)
 
-查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/Dev-Server)！
+查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/1.6%20Dev-Server)！
 
 下一章：[核心概念](/di-er-zhang-he-xin-gai-nian.md)
 

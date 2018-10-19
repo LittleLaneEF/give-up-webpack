@@ -136,6 +136,6 @@ entry: {
 
 这一小节，我们初次接触了 `Webpack` 的打包，了解了 `Webpack` 打包的日志输出，对 `entry` 和 `output` 做了很浅显的了解。其他还有一个概念，在这里就不做介绍了，我们后续都会开出单独的小节介绍，比如 `chunk`、`entry`、`output` 等等。
 
-查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/1.1%20Hello-Webpack)！
+查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/1.2%20Hello-Webpack)！
 
 下一小节：[接触loader](/di-yi-zhang-ru-men-pei-zhi/13-jie-hong-loader.md)

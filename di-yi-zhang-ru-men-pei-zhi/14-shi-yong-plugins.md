@@ -175,6 +175,6 @@ module.exports = {
 
 到这里为止，我们已经看到了 `Webpack` 的强大和高可配置性。按照每个插件、`loader` 提供的配置，配置一下即可使用，岂不美哉！当然这还只是我们接触 `Webpack` 的九牛一毛，对于后面的内容也会越来越复杂，希望能够坚持下去！大家也一样，动手多实践，多修改配置，跑跑试试看，不准会获得意外的惊喜哟！大家加油！
 
-查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/Hello-Plugin)！
+查看本小节 Demo，请点击[这里](https://github.com/LittleLaneEF/give-up-webpack-cases/tree/master/1.4%20Hello-Plugin)！
 
 下一节：[环境区分](/di-yi-zhang-ru-men-pei-zhi/15-huan-jing-qu-fen.md)
